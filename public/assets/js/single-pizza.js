@@ -8,7 +8,6 @@ const $commentSection = document.querySelector('#comment-section');
 const $newCommentForm = document.querySelector('#new-comment-form');
 
 let pizzaId;
-
 function getPizza() {
   // get id of pizza
   const searchParams = new URLSearchParams(document.location.search.substring(1));
@@ -17,9 +16,7 @@ function getPizza() {
   // get pizzaInfo
   fetch(`/api/pizzas/${pizzaId}`)
     .then(response => {
-      console.log(response);
       if (!response.ok) {
-        console.log('hi');
         throw new Error({ message: 'Something went wrong!' });
       }
 
@@ -82,7 +79,6 @@ function printComment(comment) {
           <label for="reply">Leave a Reply</label>
           <textarea class="form-textarea form-input"  name="reply" required></textarea>
         </div>
-
         <button class="mt-2 btn display-block w-100">Add Reply</button>
       </form>
   `;
@@ -128,7 +124,7 @@ function handleNewCommentSubmit(event) {
     })
     .then(commentResponse => {
       console.log(commentResponse);
-      // location.reload();
+      location.reload();
     })
     .catch(err => {
       console.log(err);
